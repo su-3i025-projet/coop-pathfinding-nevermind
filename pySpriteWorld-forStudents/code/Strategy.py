@@ -12,10 +12,14 @@ class Strategy():
         self.game = game
         self.iterations = iterations
         self.verbose = verbose
-        self.players = [o for o in self.game.layers['joueur']]
+        pos_play = [(o.get_rowcol(), o) for o in self.game.layers['joueur']]
+        #Comme cela on peut trier les joueurs et être certain de leur ordre 
+        #à n'importe quel OS.
+        pos_play.sort()
+        self.players = [play for (pos, play) in pos_play]
         self.nbPlayers = len(self.players)
         self.goalStates = [o.get_rowcol() for o in self.game.layers['ramassable']]
-        self.initStates = [o.get_rowcol() for o in self.players]
+        self.initStates = [pos for (pos, play) in pos_play]
         self.wallStates = [w.get_rowcol() for w in game.layers['obstacle']]
         self.taille = (game.spriteBuilder.rowsize, game.spriteBuilder.colsize)
         
