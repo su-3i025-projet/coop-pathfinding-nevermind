@@ -123,7 +123,7 @@ def voisins_tempD(iden, pos, obs_fixe, obs_mob, taille):
 
 def detecte_collision(obstacles, chemin):
     """
-    Détecte si le chemin collide avec un des obstacles.
+    Détecte si le chemin est en collision avec un des obstacles.
     """
     for pos in chemin:
         if pos in obstacles:
