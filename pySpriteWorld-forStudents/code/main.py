@@ -34,14 +34,17 @@ class Projet():
     Classe principale du projet. Permet de faire les quatre simulations principales
     avec les fonctions mainSlicing, mainCoopBase, mainTempA, mainTempA_D.
     """
-    def __init__(self, boardNumber = 1, fps = 5, iterations = 100):
+    def __init__(self, boardNumber = 1, boardName=None, fps = 5, iterations = 100):
         """
         boardNumber : identifiant de la carte de jeu à utiliser.
         fps : nombre de cadres par seconde.
         iterations : nombre maximal d'itérations.
         """
         global game
-        game = Game('Cartes/pathfindingWorld_MultiPlayer' + str(boardNumber) + '.json', SpriteBuilder)
+        if boardName is None:
+            game = Game('Cartes/pathfindingWorld_MultiPlayer' + str(boardNumber) + '.json', SpriteBuilder)
+        else:
+            game = Game('Cartes/' + str(boardName) + '.json', SpriteBuilder)
         game.O = Ontology(True, 'SpriteSheet-32x32/tiny_spritesheet_ontology.csv')
         game.populate_sprite_names(game.O)
         game.fps = fps  # frames per second
